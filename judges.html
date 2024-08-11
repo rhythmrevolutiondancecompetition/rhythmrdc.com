@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MonteCarlo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oregano">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pristina">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pompiere">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MonteCarlo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ComicSansMS">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>RRDC | Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: black;
+        }
+
+        nav .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 10px 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: 500;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: black;
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 5px;
+            position: relative;
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: -5px;
+            position: relative;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color:#de87b7;
+            overflow-x: hidden;
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .overlay-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .overlay-content a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: black;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .overlay-content a:hover, .overlay-content a:focus {
+            color: #f1f1f1;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+            color: black;
+        }
+
+
+
+
+        .content h1 {
+            font-size: 60%;
+            line-height: 1.2;
+            font-weight: 600;
+            font-family: 'MonteCarlo';
+            font-size: 48px;
+            color: #2F005D;
+
+        }
+
+        .content p {
+            line-height: 1.6;
+            opacity: 0;
+        }
+
+        .links {
+            margin-top: 30px;
+            opacity: 0;
+        }
+
+        .links a {
+            color: black;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 1s;
+        }
+
+        .btn {
+            border: 2px solid black;
+            padding: 10px 35px;
+            border-radius: 30px;
+            margin-right: 15px;
+        }
+
+        .slide-right {
+            animation: slideright 1s linear forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        @keyframes slideright {
+            0% {
+                transform: translate(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(0px);
+                opacity: 1;
+            }
+        }
+
+        .slide-left {
+            animation: slideleft 1s linear forwards;
+        }
+
+        @keyframes slideleft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+
+
+
+        .links.slide-left {
+            animation-delay: 1s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+
+
+
+            .btn {
+                padding: 8px 30px;
+            }
+
+
+        }
+
+        @media (min-width: 769px) {
+            .feature-img {
+                width: 400px;
+                position: absolute;
+                bottom: 40px;
+                right: 5%;
+            }
+        }
+        .links a:hover {
+            background-color: #2F005D;
+            color: black;
+            text-decoration: none;
+        }
+        body {
+            background-image: url("slideshow_bg.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="judges.html">Judges</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <div class="overlay" id="overlay">
+            <span class="closebtn" id="closebtn">&times;</span>
+            <div class="overlay-content">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <li><a href="team.html">Our Team</a></li>
+                <a href="judges.html">Judges</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        
+            
+        </div>
+    </div> 
+
+    <h1 id="title">Our Team</h1>
+<h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Sude İşeri ~~~~~~~~~~~~~~~~</h2>
+   <div class="image-section">
+    <div class="section-style">
+       <img class="img1" id="img1" src="judge1pic.jpg">
+       <p>Born in Istanbul, Sude İşeri is 20 years old, who after completing her education at Üsküdar American High School, moved to London for university in September 2023. She was introduced to jazz and Latin dance at the age of nine and started attending group classes. At the age of 14, with the guidance of her Latin dance instructor, she started competing in salsa as a licensed athlete in a professional sports club. She competed in solo and partner categories for four seasons, coming second in the Youth Solo A Class and Inter-Club Partnered B Class categories in the competitions held throughout Turkey. After her partner and I reached the finals in the Turkish championship, they participated in the world championship in salsa and bachata branches in Macedonia to represent their country, and ranked seventh in the world. She has also given lessons to children's groups in salsa and hip-hop for a year. She came second in England with the advanced jazz dance team of UCL, the university she currently studies in. Currently, while she is actively continuing her dance life in London with branches such as jazz, salsa, hip-hop, high-heels, she is also preparing for the Turkish championship in the salsa branch.)</p>
+    </div>
+    
+       
+   </div> <br> 
+
+
+
+
+   <!-- Logistic Team Information -->
+   <h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Gyan Kumari Sunuwar ~~~~~~~~~~~~~~~~</h2>
+    <div class="image-section" style="height: 750px;">
+ 
+        <div class="section-style" >
+            <img class="img1" id="img4" src="judge3pic.jpg">
+            <p>Gyan Kumari Sunuwar,a 31 year old belonging to Hiphop culture community and a foundation base of b-griling and hiphop. She started her b-griling from NHF( Nepal Hiphop Foundation). As being part of this culture she got a chance to represent a breaking and hiphop culture all over Nepal through touring with the help of US Embassy. Along with her dance career she decided to continue her studies and completing her bachelor degree in Arts , choosing Dance and Home science as her main course subject that includes Indian classic and Nepali cultural dances.
+                She even joint (SAA) sushila Arts academy for ballet dance as an intern and still continuing her delightful journey now.
+                As for her teaching career she has worked as a Dance Instructor in different schools and Dance studios, and is currently working in sushila arts academy as a HipHop teacher and Ullens Kathmandu school as a Dance teacher.</p>
+       </div>
+      
+
+   
+       
+   </div> 
+
+    
+</center>
+
+
+<style>
+  .contactBox {
+        background-image: url("contact_bg.jpeg");
+        background-size: cover;
+    }
+
+    .icon {
+        width: 10%;
+    }
+    h2 {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+  }
+  h4{
+    color: black;
+  }
+</style>
+</body>
+
+<style>
+
+#title {
+            font-family: 'MonteCarlo';
+            font-size: 50px;
+        }
+    body {
+    text-align: center;
+    
+}
+div {
+    margin-top: 15px;
+}
+.image-section {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0);
+    width: 95%;
+    border-radius: 20px;
+}
+.section-style {
+    margin-right: 25px;
+    margin-left: 25px;
+    
+}
+
+p {
+    margin-top: 15px;
+    font-family: 'Times New Roman';
+    font-size: 20px;
+}
+img {
+    width: 200px;
+}
+
+#header {
+    margin-top: -0.1%;
+    background-color: #000000;
+            width: 100%;
+            height: 7%;
+
+        }
+.headerBtn {
+    margin-top: 0.5%;
+    background-color: #000000;
+    border-color: #000000;
+    border-width: 0px;
+    font-family: 'Times New Roman';
+    color: whitesmoke;
+    font-size: 17px;
+        }
+
+        .headerBtn:hover {
+            cursor: pointer;
+        }
+
+    body {
+        background-image: url("slideshow_bg.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+</style>
+
+
+
+   
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closebtn');
+
+        menuToggle.addEventListener('click', () => {
+            overlay.style.width = '100%';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            overlay.style.width = '0';
+        });
+    </script>
+
+
+  </body>
+  
+  
+</body>
+</html>

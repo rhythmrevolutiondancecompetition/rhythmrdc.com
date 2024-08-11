@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MonteCarlo">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oregano">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Parisienne">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pristina">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pompiere">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great Vibes">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>THE STEM SOCIETY</title>
+    <style>
+        .headerBtn {
+            margin-top: 1%;
+            background-color: #000000;
+            border-color: #000000;
+            border-width: 0px;
+            font-family: 'Times New Roman';
+            color: whitesmoke;
+            font-size: 17px;
+        }
+
+        .headerBtn:hover {
+            cursor: pointer;
+        }
+
+        #title {
+            font-family: 'Great Vibes';
+            font-size: 80px;
+        }
+
+        body {
+            background-image: url("slideshow_bg.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #icon {
+
+            width: 5%;
+            height: 5%;
+            
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: rgb(0, 0, 0);
+        }
+
+        nav .logo img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 10px 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: 500;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(0, 0, 0);
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 5px;
+            position: relative;
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: -5px;
+            position: relative;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color:#de87b7;
+            overflow-x: hidden;
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .overlay-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .overlay-content a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: rgb(0, 0, 0);
+            display: block;
+            transition: 0.3s;
+        }
+
+        .overlay-content a:hover, .overlay-content a:focus {
+            color: #000000;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+        }
+
+
+        .content {
+            color: rgb(0, 0, 0);
+            max-width: 50%;
+        }
+
+        .content h1 {
+            font-size: 60%;
+            line-height: 1.2;
+            font-weight: 600;
+            font-family: 'MonteCarlo';
+            font-size: 48px;
+            color: #2F005D;
+
+        }
+
+        .content p {
+            line-height: 1.6;
+            opacity: 0;
+        }
+
+        .links {
+            margin-top: 30px;
+            opacity: 0;
+        }
+
+        .links a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            display: inline-block;
+            transition: background 1s;
+        }
+
+        .btn {
+            border: 2px solid white;
+            padding: 10px 35px;
+            border-radius: 30px;
+            margin-right: 15px;
+        }
+
+        .slide-right {
+            animation: slideright 1s linear forwards;
+            animation-delay: 1s;
+            opacity: 0;
+        }
+
+        @keyframes slideright {
+            0% {
+                transform: translate(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(0px);
+                opacity: 1;
+            }
+        }
+
+        .slide-left {
+            animation: slideleft 1s linear forwards;
+        }
+
+        @keyframes slideleft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+
+
+
+        .links.slide-left {
+            animation-delay: 1s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .content {
+                margin: 20px 0;
+            }
+
+
+            .btn {
+                padding: 8px 30px;
+            }
+
+
+        }
+
+        @media (min-width: 769px) {
+            .feature-img {
+                width: 400px;
+                position: absolute;
+                bottom: 40px;
+                right: 5%;
+            }
+        }
+        .links a:hover {
+            background-color: #2F005D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="judges.html">Judges</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+        <div class="overlay" id="overlay">
+            <span class="closebtn" id="closebtn">&times;</span>
+            <div class="overlay-content">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <li><a href="team.html">Our Team</a></li>
+                <a href="judges.html">Judges</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <center>
+                <h1 id="title">About Us</h1> 
+            
+                
+    
+                <div style="background-color: rgba(244, 171, 217, 0); margin: 2%; border-radius: 20px;"><br>
+                    <center><h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Our Story ~~~~~~~~~~~~~~~~</h2></center>
+                    <p style="font-family: 'Times New Roman'; font-size: 16px;">“Like numerous children encouraged to dance all over the world, I was encouraged by my grandfather to 
+                        dance since a young age of three or four and before I knew what I was doing, from then to now, dance 
+                        has become my passion and my form of self-expression through my body movements along the melody of music. <br><br>
+                        Like myself, I know there are many others like me in the world, inspired by a thing or the other to 
+                        pursue dance as a hobby or a career itself. Though, the love of dancing perseveres among many, most of us 
+                        are fearful to display the talent we acquire or the love we have for it and even if we do, we aren’t able 
+                        to display it in a larger scale whether it may be on a national or an international level, which is why 
+                        I thought of starting such a competition, to inspire those like me spread all over the world to portray 
+                        their talents not only within the limitation of their 4-walled room or a school but globally. <br> <br>
+                        This started as mere midnight idea in the back of my mind, which I never thought would actually turn out 
+                        as big as it is today, without my precious team that has been working endlessly whether it be a weekend
+                        or a work day, day or night. <br><br> Though it may seem like the creator is the one getting all the credit for 
+                        the success of everything, I want to take this moment to give credit to all the team members that have 
+                        believed in this competition and foundation even though it was just a mere idea when it previously 
+                        started because without them, the idea would still be simmering in the back of my mind with no 
+                        implementation or impact at all. Thank you to my team once again!”, says Samidha Singh Basnyat.
+                    </p><br></div><br>
+    
+            <h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Our Purpose ~~~~~~~~~~~~~~~~</h2> </center>
+            <div style="margin: 2%; background-color: rgba(244, 171, 217, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Global Representation</h3>
+                <p style="font-family: 'Times New Roman'; font-size: 16px;">RRDC aims to unite talented dancers from diverse backgrounds, providing a platform to showcase their unique skills on an international stage. We believe that dance transcends cultural and geographical boundaries, and our goal is to highlight this diversity, promoting understanding and appreciation through the universal language of dance.</p><br>
+            </div>
+            
+            <div style="margin: 2%; background-color: rgba(244, 171, 217, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Affordable Opportunity</h3>
+                <p style="font-family: 'Times New Roman'; font-size: 16px;"> We are committed to making dance accessible to all. By keeping participation costs low, we ensure that talented individuals can shine regardless of their financial background. Our focus is on providing equal opportunities for everyone, breaking down economic barriers that might otherwise prevent talented dancers from pursuing their dreams.
+                </p><br>
+            </div>
+    
+            <div style="margin: 2%; background-color: rgba(244, 171, 217, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Long-Term Vision</h3>
+                <p style="font-family: 'Times New Roman'; font-size: 16px;">Our competition is more than just an event—it's a movement. We are dedicated to fostering a global dance community that thrives on creativity, mutual respect, and shared passion. We believe that dance is a powerful medium for bringing people together, transcending borders and cultural differences to create a universal language of expression and unity. Our mission is to build a vibrant community where dancers can connect, collaborate, and inspire one another, pushing the boundaries of their art form.
+                    <br> A significant part of our commitment to this mission involves giving back to the broader community and the planet. Seventy percent of our donations from registration fees support our own foundation, the Sundar Foundation. This foundation is dedicated to addressing major global issues, with a particular focus on solid waste management and environmental sustainability. Improper waste disposal is a critical problem that affects the health of our planet and its inhabitants, leading to pollution, health hazards, and the degradation of natural ecosystems. 
+                    <br> By channeling resources into effective waste management practices, we aim to mitigate these adverse impacts and promote a healthier, cleaner environment. The Sundar Foundation works on initiatives that educate communities about the importance of sustainable practices, support the development of innovative waste management solutions, and foster collaborations with organizations dedicated to environmental protection.
+                    <br> In addition to environmental efforts, the Sundar Foundation also addresses the needs of people around the world. We recognize that the well-being of our planet is intrinsically linked to the well-being of its inhabitants. Therefore, we support programs that enhance the quality of life for communities, providing access to essential resources, education, and opportunities for personal and professional growth.
+                    <br> By providing these resources, we aim to save our planet and ensure there is a better future for our world. Our vision extends beyond the immediate impact of our dance competition. We aspire to create a lasting legacy of positive change, empowering individuals to make a difference in their communities and inspiring collective action for the greater good.
+                    <br> Through the combined efforts of our dance community and the Sundar Foundation, we strive to make meaningful contributions to the global movement for sustainability and social justice. Together, we can create a future where the arts and environmental stewardship go hand in hand, fostering a world that is not only more beautiful but also more equitable and sustainable for generations to come.
+                </p><br>
+            </div>
+    
+    
+    
+            <center><h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Competition Information ~~~~~~~~~~~~~~~~</h2> </center>
+            <div style="margin: 2%; background-color: rgba(165, 216, 252, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">How it Works</h3>
+                <p style=" font-family: 'Times New Roman'; font-size: 16px;">Participants submit recorded dance videos, either as solo acts or in teams of up to 15 members through Whatsapp after receiving emails from the official email.
+                </p><br>
+            </div>
+            
+            <div style="margin: 2%; background-color: rgba(165, 216, 252, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Judging Process</h3>
+                <p style=" font-family: 'Times New Roman'; font-size: 16px;">The competition spans several rounds—starting with a national round, followed by continental, and culminating in an international round that shall be evaluated based on criteria such as dance techniques, expressions, performance quality, and choreography.
+                </p><br>
+            </div>
+    
+            <div style="margin: 2%; background-color: rgba(165, 216, 252, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Judging Process</h3>
+                <p style="font-family: 'Times New Roman'; font-size: 16px;">The competition is structured to span several rigorous and exciting rounds, each designed to showcase the incredible talent and dedication of our participants. The journey begins with the national round, where dancers from across the country compete to represent their nation. This is followed by the continental round, where national winners face off against their counterpart.
+                </p><br>
+            </div>
+    
+            <div style="margin: 2%; background-color: rgba(165, 216, 252, 0); border-radius: 10px;"> <br>
+                <h3 style="font-family: 'Parisienne'; font-size: 30px;">Feedback</h3>
+                <p style="font-family: 'Times New Roman'; font-size: 16px;">In the continental and final round, participants receive personalized feedback, enhancing their learning and growth.
+                </p><br>
+            </div>
+    
+            <center><h2 style="font-family: 'Great Vibes'; font-size: 40px;">~~~~~~~~~~~~~~~~ Timeline ~~~~~~~~~~~~~~~~</h2>
+                <p style="margin: 10px; margin-bottom: -10px; font-family: 'Times New Roman'; font-size: 16px;">
+                    Start of Registration: 6th June 2024 <br>
+                    Early Registration deadline: 30th September 2024 <br>
+                    Late Registration: 8th October 2024 <br>
+                    Start of Competition: 3th October 2024 <br>
+                    National Level Round Selection: 10th October 2024 <br>
+                    Regional/Continental Level Round Selection: 15th October 2024 <br>
+                    International Level Round Selection: 19th October 2024 <br>
+                    Concluding Event and Winners Announcement: 21st October 2024 <br>
+                </p></center><br><br>
+    
+                <div class="contactBox">
+                    <br>
+                    <center><h2>Contact Us!</h2>
+                        <a href="https://www.instagram.com/rhythmrdc/" >
+                            <img src="insta_icon.png" class="icon">
+                          </a>
+                        <a href="https://www.facebook.com/profile.php?id=61561097453343">
+                            <img src="fb_icon.png" class="icon">
+                        </a>
+                        <h4>Email - rhythmrev.dance@gmail.com</h4>
+                        <h4>Feedback - </h4>
+                        <br>
+                    </center>
+                </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closebtn');
+
+        menuToggle.addEventListener('click', () => {
+            overlay.style.width = '100%';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            overlay.style.width = '0';
+        });
+    </script>
+</body>
+</html>
